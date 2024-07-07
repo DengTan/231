@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <title>Inventory Page</title>
+</head>
+<body>
+<h1>Manage Inventories</h1>
+<form th:action="@{/admin}" th:object="${inventories}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <label>
+        Product Name:
+        <input type="text" th:field="*{productName}">
+    </label><br>
+    <label>
+        Quantity:
+        <input type="text" th:field="*{quantity}">
+    </label><br>
+    <label>
+        Price:
+        <input type="text" th:field="*{price}">
+    </label><br>
+    <label>
+        Size:
+        <input type="text" th:field="*{size}">
+    </label><br>
+    <button type="submit">Save</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Size</th>
+    </tr>
+    <tr th:each="inventory : ${inventories}">
+        <td th:text="${inventory.id}"></td>
+        <td th:text="${inventory.productName}"></td>
+        <td th:text="${inventory.quantity}"></td>
+        <td th:text="${inventory.price}"></td>
+        <td th:text="${inventory.size}"></td>
+    </tr>
+</table>
+</body>
+</html>
